@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_list/model/box_manager.dart';
 import 'package:todo_list/model/task.dart';
 import 'package:todo_list/providers/app_provider.dart';
 import 'package:todo_list/widgets/text_field_task_dialog.dart';
@@ -13,12 +11,11 @@ class TaskDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<AppProvider>(context);
-    Box<Task> tasksBox = Hive.box(BoxManager.taskBox);
     TextEditingController titleController = TextEditingController();
     TextEditingController descrController = TextEditingController();
 
-    Task? currentTask = (taskId != null && tasksBox.get(taskId) != null)
-        ? tasksBox.get(taskId)
+    Task? currentTask = (taskId != null && provider.taskBox.get(taskId) != null)
+        ? provider.taskBox.get(taskId)
         : null;
 
     return AlertDialog(
@@ -52,12 +49,11 @@ class TaskDialog extends StatelessWidget {
         TextButton(
             onPressed: () {
               if (titleController.text.isNotEmpty) {
-                tasksBox.put(
-                    '${DateTime.now().millisecondsSinceEpoch}',
-                    Task(
-                        title: titleController.text,
-                        description: descrController.text));
-                provider.updateTaskList();
+                String _id = '${DateTime.now().millisecondsSinceEpoch}';
+                provider.insertTask(Task(
+                    id: _id,
+                    title: titleController.text,
+                    description: descrController.text));
                 Navigator.pop(context);
               }
             },

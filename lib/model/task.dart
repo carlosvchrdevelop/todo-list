@@ -5,6 +5,9 @@ part 'task.g.dart';
 
 @HiveType(typeId: 1)
 class Task {
+  @HiveField(3)
+  final String id;
+
   @HiveField(0)
   final String title;
 
@@ -14,6 +17,27 @@ class Task {
   @HiveField(2)
   final TaskState state;
 
+  @HiveField(4)
+  final String? dueDate;
+
   const Task(
-      {required this.title, this.description, this.state = TaskState.pending});
+      {required this.id,
+      required this.title,
+      this.description,
+      this.state = TaskState.pending,
+      this.dueDate});
+
+  Task getCopy(
+      {String? id,
+      String? title,
+      String? description,
+      TaskState? state,
+      String? dueDate}) {
+    return Task(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        state: state ?? this.state,
+        dueDate: dueDate ?? this.dueDate);
+  }
 }
