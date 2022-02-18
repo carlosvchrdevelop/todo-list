@@ -32,7 +32,7 @@ class TaskDialog extends StatelessWidget {
                           context: context,
                           builder: (context) => AlertDialog(
                                 content: const Text(
-                                    'Please, confirm that you want to remove the task'),
+                                    'Please, confirm that you want to remove the task.'),
                                 actions: [
                                   TextButton(
                                       onPressed: () => Navigator.pop(context),
@@ -84,7 +84,8 @@ class TaskDialog extends StatelessWidget {
         TextButton(
             onPressed: () {
               if (titleController.text.isNotEmpty) {
-                String _id = '${DateTime.now().millisecondsSinceEpoch}';
+                String _id =
+                    taskId ?? '${DateTime.now().millisecondsSinceEpoch}';
                 provider.insertTask(Task(
                     id: _id,
                     title: titleController.text,
