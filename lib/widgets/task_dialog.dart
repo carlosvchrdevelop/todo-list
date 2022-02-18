@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/model/box_manager.dart';
 import 'package:todo_list/model/task.dart';
+import 'package:todo_list/providers/app_provider.dart';
 import 'package:todo_list/widgets/text_field_task_dialog.dart';
 
 class TaskDialog extends StatelessWidget {
@@ -10,6 +12,7 @@ class TaskDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<AppProvider>(context);
     Box<Task> tasksBox = Hive.box(BoxManager.taskBox);
     TextEditingController titleController = TextEditingController();
     TextEditingController descrController = TextEditingController();
@@ -19,6 +22,8 @@ class TaskDialog extends StatelessWidget {
         : null;
 
     return AlertDialog(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+      title: Text(taskId == null ? 'Add new task' : 'Edit task'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -28,7 +33,7 @@ class TaskDialog extends StatelessWidget {
               labelText: 'Title',
               controller: titleController
                 ..text = currentTask != null ? currentTask.title : ''),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           TextFieldTaskDialog(
             minLines: 6,
             maxLines: 8,
@@ -52,6 +57,7 @@ class TaskDialog extends StatelessWidget {
                     Task(
                         title: titleController.text,
                         description: descrController.text));
+                provider.updateTaskList();
                 Navigator.pop(context);
               }
             },

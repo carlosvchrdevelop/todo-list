@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/themes/AppTheme.dart';
+import 'package:todo_list/themes/app_theme.dart';
 
 class TextFieldTaskDialog extends StatelessWidget {
   final String labelText;
@@ -23,10 +23,10 @@ class TextFieldTaskDialog extends StatelessWidget {
         decoration: InputDecoration(
             labelText: labelText,
             enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 2, color: AppTheme.primary),
-                borderRadius: BorderRadius.circular(15)),
+                borderSide: const BorderSide(width: 1, color: AppTheme.primary),
+                borderRadius: BorderRadius.circular(5)),
             focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 2, color: AppTheme.primary),
-                borderRadius: BorderRadius.circular(15))));
+                borderSide: const BorderSide(width: 1, color: AppTheme.primary),
+                borderRadius: BorderRadius.circular(5))));
   }
 }
