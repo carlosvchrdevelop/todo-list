@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/providers/app_provider.dart';
-import 'package:todo_list/widgets/task_dialog.dart';
+import 'package:todo_list/widgets/task_dialog/task_dialog.dart';
 import 'package:todo_list/widgets/task_list.dart';
 
 class HomeScreen extends StatelessWidget {

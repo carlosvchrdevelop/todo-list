@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_list/model/task.dart';
 import 'package:todo_list/model/task_state.dart';
 import 'package:todo_list/providers/app_provider.dart';
-import 'package:todo_list/widgets/task_dialog.dart';
+import 'package:todo_list/widgets/task_dialog/task_dialog.dart';
 
 class TaskList extends StatelessWidget {
   const TaskList({Key? key}) : super(key: key);
