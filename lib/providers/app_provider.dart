@@ -22,6 +22,11 @@ class AppProvider with ChangeNotifier {
     updateTaskList();
   }
 
+  Future<void> deleteTask(String id) async {
+    await _tasksBox.delete(id);
+    updateTaskList();
+  }
+
   void updateTaskList() {
     _tasks = _tasksBox.values.toList();
     notifyListeners();

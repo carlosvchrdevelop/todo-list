@@ -5,7 +5,7 @@ import 'package:todo_list/providers/app_provider.dart';
 import 'package:todo_list/widgets/text_field_task_dialog.dart';
 
 class TaskDialog extends StatelessWidget {
-  final int? taskId;
+  final String? taskId;
   const TaskDialog({Key? key, this.taskId}) : super(key: key);
 
   @override
@@ -20,7 +20,42 @@ class TaskDialog extends StatelessWidget {
 
     return AlertDialog(
       contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
-      title: Text(taskId == null ? 'Add new task' : 'Edit task'),
+      title: taskId == null
+          ? const Text('Add new task')
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Edit task'),
+                IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                content: const Text(
+                                    'Please, confirm that you want to remove the task'),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: const Text('Cancel')),
+                                  TextButton(
+                                      onPressed: () {
+                                        provider.deleteTask(taskId!);
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text(
+                                        'Remove',
+                                        style: TextStyle(color: Colors.red),
+                                      ))
+                                ],
+                              ));
+                    },
+                    icon: const Icon(
+                      Icons.delete_forever_outlined,
+                      color: Colors.red,
+                    ))
+              ],
+            ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
