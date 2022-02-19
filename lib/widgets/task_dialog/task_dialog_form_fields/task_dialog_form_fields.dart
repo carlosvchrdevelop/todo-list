@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list/lang/lang.dart';
 import 'package:todo_list/model/task.dart';
 import 'package:todo_list/providers/app_provider.dart';
 import 'package:todo_list/widgets/task_dialog/task_dialog_form_fields/text_field_task_dialog.dart';
@@ -27,14 +28,14 @@ class TaskDialogFormFields extends StatelessWidget {
         TextFieldTaskDialog(
             minLines: 1,
             maxLines: 3,
-            labelText: 'Title',
+            labelText: Lang.title,
             controller: titleController
               ..text = currentTask != null ? currentTask.title : ''),
         const SizedBox(height: 12),
         TextFieldTaskDialog(
           minLines: 6,
           maxLines: 8,
-          labelText: 'Description',
+          labelText: Lang.description,
           controller: descrController
             ..text = currentTask != null ? currentTask.description ?? '' : '',
         )

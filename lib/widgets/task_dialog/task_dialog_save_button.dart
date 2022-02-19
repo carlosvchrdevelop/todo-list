@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list/lang/lang.dart';
 import 'package:todo_list/model/task.dart';
 import 'package:todo_list/providers/app_provider.dart';
 
@@ -28,6 +29,6 @@ class TaskDialogSaveButton extends StatelessWidget {
             Navigator.pop(context);
           }
         },
-        child: const Text('Save'));
+        child: Text(Lang.save));
   }
 }

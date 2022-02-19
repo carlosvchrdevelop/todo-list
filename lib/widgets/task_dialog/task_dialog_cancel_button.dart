@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/lang/lang.dart';
 
 class TaskDialogCancelButton extends StatelessWidget {
   const TaskDialogCancelButton({Key? key}) : super(key: key);
@@ -9,6 +10,6 @@ class TaskDialogCancelButton extends StatelessWidget {
         onPressed: () {
           Navigator.pop(context);
         },
-        child: const Text('Cancel'));
+        child: Text(Lang.cancel));
   }
 }

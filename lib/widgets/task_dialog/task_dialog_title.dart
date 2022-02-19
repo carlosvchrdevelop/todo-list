@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/lang/lang.dart';
 import 'package:todo_list/widgets/task_dialog/task_dialog_form_fields/deletion_confirm_dialog.dart';
 
 class TaskDialogTitle extends StatelessWidget {
@@ -8,11 +9,11 @@ class TaskDialogTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return taskId == null
-        ? const Text('Add new task')
+        ? Text(Lang.addNewTask)
         : Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Edit task'),
+              Text(Lang.editTask),
               IconButton(
                   onPressed: () => showDialog(
                       context: context,

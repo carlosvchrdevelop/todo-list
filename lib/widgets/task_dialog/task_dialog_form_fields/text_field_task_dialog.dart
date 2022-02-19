@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list/providers/settings_provider.dart';
 import 'package:todo_list/themes/app_theme.dart';
 
 class TextFieldTaskDialog extends StatelessWidget {
@@ -16,6 +18,7 @@ class TextFieldTaskDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settingsProvider = Provider.of<SettingsProvider>(context);
     return TextField(
         controller: controller,
         minLines: minLines,
@@ -23,10 +26,14 @@ class TextFieldTaskDialog extends StatelessWidget {
         decoration: InputDecoration(
             labelText: labelText,
             enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 1, color: AppTheme.primary),
+                borderSide: BorderSide(
+                    width: 1,
+                    color: AppTheme.getColor(settingsProvider.appColor)),
                 borderRadius: BorderRadius.circular(5)),
             focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 1, color: AppTheme.primary),
+                borderSide: BorderSide(
+                    width: 1,
+                    color: AppTheme.getColor(settingsProvider.appColor)),
                 borderRadius: BorderRadius.circular(5))));
   }
 }
