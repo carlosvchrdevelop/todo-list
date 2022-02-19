@@ -33,6 +33,14 @@ class Lang {
       'viewTypeRegular': 'Regular',
       'viewTypeCompact': 'Compact',
       'viewTypeComfortable': 'Comfortable',
+      'filter': 'Filter',
+      'apply': 'Apply',
+      'stateDone': 'Completed',
+      'statePending': 'Pending',
+      'stateOverdue': 'Overdue',
+      'onlyPriority': 'Only priority',
+      'close': 'Close',
+      'reset': 'Reset',
     },
     Language.spanish: {
       'cancel': 'Cancelar',
@@ -49,6 +57,14 @@ class Lang {
       'viewTypeRegular': 'Normal',
       'viewTypeCompact': 'Compacto',
       'viewTypeComfortable': 'Cómodo',
+      'filter': 'Filtrar',
+      'apply': 'Aplicar',
+      'stateDone': 'Completadas',
+      'statePending': 'Pendientes',
+      'stateOverdue': 'Pasadas de fecha',
+      'onlyPriority': 'Solo prioritarios',
+      'close': 'Cerrar',
+      'reset': 'Restablecer',
     }
   };
 
@@ -102,5 +118,37 @@ class Lang {
 
   static String get viewTypeComfortable {
     return _translations[language]!['viewTypeComfortable']!;
+  }
+
+  static String get filter {
+    return _translations[language]!['filter']!;
+  }
+
+  static String get apply {
+    return _translations[language]!['apply']!;
+  }
+
+  static String get stateDone {
+    return _translations[language]!['stateDone']!;
+  }
+
+  static String get statePending {
+    return _translations[language]!['statePending']!;
+  }
+
+  static String get stateOverdue {
+    return _translations[language]!['stateOverdue']!;
+  }
+
+  static String get onlyPriority {
+    return _translations[language]!['onlyPriority']!;
+  }
+
+  static String get close {
+    return _translations[language]!['close']!;
+  }
+
+  static String get reset {
+    return _translations[language]!['reset']!;
   }
 }

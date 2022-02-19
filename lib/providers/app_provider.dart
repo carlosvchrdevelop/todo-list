@@ -6,15 +6,53 @@ import 'package:todo_list/model/task_state.dart';
 
 class AppProvider with ChangeNotifier {
   final Box<Task> _tasksBox = Hive.box(BoxManager.taskBox);
+
+  bool showPendingTasks = true;
+  bool showDoneTasks = true;
+  bool showOnlyPriorityTasks = false;
+  bool showOverdueTasks = true;
   List<Task> _tasks = [];
 
   List<Task> get tasks {
-    if (_tasks.isEmpty) _tasks = _tasksBox.values.toList();
+    _tasks = _tasksBox.values.toList();
+    _putEndedTasksAtBottom();
+    _filter();
     return _tasks;
+  }
+
+  void _putEndedTasksAtBottom() {
+    _tasks = _tasks.isEmpty
+        ? []
+        : [
+            ..._tasks.where((element) => element.state != TaskState.done),
+            ..._tasks.where((element) => element.state == TaskState.done),
+          ];
+  }
+
+  void _filter() {
+    _tasks = _tasks.where((e) {
+      return !((!showPendingTasks && e.state == TaskState.pending) ||
+          (!showOverdueTasks && e.state == TaskState.orverdue) ||
+          (!showDoneTasks && e.state == TaskState.done) ||
+          (showOnlyPriorityTasks && !e.priority));
+    }).toList();
   }
 
   Box<Task> get taskBox {
     return _tasksBox;
+  }
+
+  bool getCurrentTaskState(TaskState state) {
+    switch (state) {
+      case TaskState.pending:
+        return showPendingTasks;
+      case TaskState.done:
+        return showDoneTasks;
+      case TaskState.orverdue:
+        return showOverdueTasks;
+      default:
+        return false;
+    }
   }
 
   Future<void> insertTask(Task t) async {
@@ -41,5 +79,9 @@ class AppProvider with ChangeNotifier {
       }
     }
     updateTaskList();
+  }
+
+  void applyFilters() {
+    notifyListeners();
   }
 }

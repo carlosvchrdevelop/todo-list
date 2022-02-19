@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/providers/app_provider.dart';
 import 'package:todo_list/screens/settings_screen.dart';
+import 'package:todo_list/widgets/filter_dialog.dart';
 import 'package:todo_list/widgets/task_dialog/task_dialog.dart';
 import 'package:todo_list/widgets/task_list/task_list.dart';
 
@@ -27,6 +28,19 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          SizedBox(
+            width: 48,
+            height: 48,
+            child: FittedBox(
+              child: FloatingActionButton(
+                  heroTag: 'filterBtn',
+                  child: const Icon(Icons.filter_alt),
+                  onPressed: () => showDialog(
+                      context: context,
+                      builder: (context) => const FilterDialog())),
+            ),
+          ),
+          const SizedBox(width: 12),
           SizedBox(
             width: 48,
             height: 48,
