@@ -18,7 +18,7 @@ class DeletionConfirmDialog extends StatelessWidget {
             child: const Text('Cancel')),
         TextButton(
             onPressed: () {
-              provider.deleteTask(taskId!);
+              provider.deleteTask(taskId);
               Navigator.pop(context);
               Navigator.pop(context);
             },
