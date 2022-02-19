@@ -30,6 +30,9 @@ class Lang {
       'editTask': 'Edit task',
       'settings': 'Settings',
       'needsRestart': 'You must restart to apply changes.',
+      'viewTypeRegular': 'Regular',
+      'viewTypeCompact': 'Compact',
+      'viewTypeComfortable': 'Comfortable',
     },
     Language.spanish: {
       'cancel': 'Cancelar',
@@ -43,6 +46,9 @@ class Lang {
       'editTask': 'Editar tarea',
       'settings': 'Configuración',
       'needsRestart': 'Se necesita reiniciar para aplicar los cambios.',
+      'viewTypeRegular': 'Normal',
+      'viewTypeCompact': 'Compacto',
+      'viewTypeComfortable': 'Cómodo',
     }
   };
 
@@ -84,5 +90,17 @@ class Lang {
 
   static String getNeedsRestart(Language _language) {
     return _translations[_language]!['needsRestart']!;
+  }
+
+  static String get viewTypeRegular {
+    return _translations[language]!['viewTypeRegular']!;
+  }
+
+  static String get viewTypeCompact {
+    return _translations[language]!['viewTypeCompact']!;
+  }
+
+  static String get viewTypeComfortable {
+    return _translations[language]!['viewTypeComfortable']!;
   }
 }

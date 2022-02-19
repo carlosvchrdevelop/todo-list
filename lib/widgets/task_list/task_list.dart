@@ -14,7 +14,7 @@ class TaskList extends StatelessWidget {
           return TaskListTile(task: provider.tasks[index]);
         },
         separatorBuilder: (_, __) => const Divider(
-              height: 1,
+              height: 0,
             ),
         itemCount: provider.tasks.length);
   }

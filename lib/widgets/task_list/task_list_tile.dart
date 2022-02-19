@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/model/task.dart';
+import 'package:todo_list/providers/settings_provider.dart';
+import 'package:todo_list/src/view_type.dart';
 import 'package:todo_list/widgets/task_dialog/task_dialog.dart';
 import 'package:todo_list/widgets/task_list/task_list_tile_body.dart';
 import 'package:todo_list/widgets/task_list/task_list_tile_header.dart';
@@ -16,6 +19,7 @@ class _TaskListTileState extends State<TaskListTile> {
   bool _isExpanded = false;
   @override
   Widget build(BuildContext context) {
+    final settingsProvider = Provider.of<SettingsProvider>(context);
     return InkWell(
       onLongPress: () => showDialog(
           context: context,
@@ -25,14 +29,20 @@ class _TaskListTileState extends State<TaskListTile> {
           _isExpanded = !_isExpanded;
         });
       },
-      child: Column(
-        children: [
-          TaskListTileHeader(
-            task: widget.task,
-            isExpanded: _isExpanded,
-          ),
-          TaskListTileBody(task: widget.task, isExpanded: _isExpanded)
-        ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            vertical:
+                ViewTypeManager.getViewTypeSize(settingsProvider.viewType),
+            horizontal: 0),
+        child: Column(
+          children: [
+            TaskListTileHeader(
+              task: widget.task,
+              isExpanded: _isExpanded,
+            ),
+            TaskListTileBody(task: widget.task, isExpanded: _isExpanded)
+          ],
+        ),
       ),
     );
   }
