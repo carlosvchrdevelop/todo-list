@@ -4,7 +4,9 @@ import 'package:todo_list/providers/settings_provider.dart';
 import 'package:todo_list/themes/app_theme.dart';
 
 class SettingsColorDropdown extends StatelessWidget {
-  const SettingsColorDropdown({Key? key}) : super(key: key);
+  final double width;
+  const SettingsColorDropdown({Key? key, required this.width})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +18,9 @@ class SettingsColorDropdown extends StatelessWidget {
                 value: e,
                 child: ColoredBox(
                   color: AppTheme.getColor(e),
-                  child: const SizedBox(
+                  child: SizedBox(
                     height: 32,
-                    width: 150,
+                    width: width,
                   ),
                 )))
             .toList(),

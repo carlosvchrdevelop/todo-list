@@ -41,6 +41,9 @@ class Lang {
       'onlyPriority': 'Only priority',
       'close': 'Close',
       'reset': 'Reset',
+      'color': 'Color',
+      'lang': 'Language',
+      'viewType': 'View type',
     },
     Language.spanish: {
       'cancel': 'Cancelar',
@@ -65,6 +68,9 @@ class Lang {
       'onlyPriority': 'Solo prioritarios',
       'close': 'Cerrar',
       'reset': 'Restablecer',
+      'color': 'Color',
+      'lang': 'Idioma',
+      'viewType': 'Tipo de vista',
     }
   };
 
@@ -150,5 +156,17 @@ class Lang {
 
   static String get reset {
     return _translations[language]!['reset']!;
+  }
+
+  static String get color {
+    return _translations[language]!['color']!;
+  }
+
+  static String get lang {
+    return _translations[language]!['lang']!;
+  }
+
+  static String get viewType {
+    return _translations[language]!['viewType']!;
   }
 }

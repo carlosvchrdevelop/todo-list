@@ -4,7 +4,9 @@ import 'package:todo_list/providers/settings_provider.dart';
 import 'package:todo_list/src/view_type.dart';
 
 class SettingsViewStyleDropdown extends StatelessWidget {
-  const SettingsViewStyleDropdown({Key? key}) : super(key: key);
+  final double width;
+  const SettingsViewStyleDropdown({Key? key, required this.width})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,10 @@ class SettingsViewStyleDropdown extends StatelessWidget {
         value: provider.viewType,
         items: ViewTypeManager.getViewTypes()
             .map((e) => DropdownMenuItem(
-                value: e, child: Text(ViewTypeManager.getViewTypeLabel(e))))
+                value: e,
+                child: SizedBox(
+                    width: width,
+                    child: Text(ViewTypeManager.getViewTypeLabel(e)))))
             .toList(),
         onChanged: (ViewType? newValue) {
           provider.setViewType(newValue!);

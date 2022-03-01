@@ -5,7 +5,9 @@ import 'package:todo_list/lang/language.dart';
 import 'package:todo_list/providers/settings_provider.dart';
 
 class SettingsLanguageDropdown extends StatelessWidget {
-  const SettingsLanguageDropdown({Key? key}) : super(key: key);
+  final double width;
+  const SettingsLanguageDropdown({Key? key, required this.width})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,8 @@ class SettingsLanguageDropdown extends StatelessWidget {
         items: Lang.getLanguages()
             .map((e) => DropdownMenuItem(
                   value: e,
-                  child: Text(Lang.getLanguageLabel(e)),
+                  child: SizedBox(
+                      width: width, child: Text(Lang.getLanguageLabel(e))),
                 ))
             .toList(),
         onChanged: (Language? newLang) {
