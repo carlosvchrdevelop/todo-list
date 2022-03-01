@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/model/task.dart';
+import 'package:todo_list/model/task_state.dart';
 
 class TaskListTileBody extends StatelessWidget {
   final Task task;
@@ -19,6 +20,13 @@ class TaskListTileBody extends StatelessWidget {
                   child: Text(
                     task.description!,
                     textAlign: TextAlign.justify,
+                    style: TextStyle(
+                        decoration: task.state == TaskState.done
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
+                        color: task.state == TaskState.done
+                            ? Colors.grey
+                            : Colors.black),
                   ),
                 ),
                 padding: const EdgeInsets.only(
